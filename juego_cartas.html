@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Blue anxiety - Juego de cartas</title>
+
+		<!-- Favicon-->
+		<link rel="apple-touch-icon" sizes="180x180" href="brand/favicon/card_game/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="brand/favicon/card_game/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="brand/favicon/card_game/favicon-16x16.png">
+		<link rel="manifest" href="brand/favicon/card_game/site.webmanifest">
+
+		<!-- Style & Script -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<link href="css/styles.css" rel="stylesheet" />
+	</head>
+	<html>
+	<body style="background-image: url(./brand/cartas/imagenes/background.jpg);">
+		<center>
+            <h2 class="text-secondary">🃏Juego de cartas🃏</h2>
+			
+			<div>
+				<button class="btn btn-secondary text-uppercase" onclick="juego()">empieza</button>
+				<button class="btn btn-secondary text-uppercase"" id="cartas" onclick = "num_jugadores()">10 cartas</button>
+				<div>
+					<h5 class="text-secondary"> ¡Recuerda seleccionar el modo de juego y después 'Empieza'!</h5>
+				</div>
+				<h3 class="text-secondary" id = "demo" style="padding-top: 5px;">PUNTOS : 0</h3>
+				<div style="padding-top: 20px;">
+					<img class="carta" id = 0 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 1 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 2 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 3 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 4 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+				</div>
+				<br>
+				<div>
+					<img class="carta" id = 5 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 6 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 7 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 8 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+					<img class="carta" id = 9 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px">
+				</div>
+				<br>
+				<div>
+					<img class="carta2" id = 10 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 11 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 12 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 13 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 14 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+				</div>
+				<br>
+				<div>
+					<img class="carta2" id = 15 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 16 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 17 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 18 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+					<img class="carta2" id = 19 src="./brand/cartas/imagenes/carta.jpg" onclick = "change(this)" style="width:100px" >
+				</div>
+			</div>
+			<div>
+				<p id = "demo_demo"></p>
+			</div>
+		</center>
+		<footer style="background-color: white;" class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-start">Copyright &copy; Blue Anxiety 2022</div>
+                    <div class="col-lg-6 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Política de privacidad</a>
+                        <a class="link-dark text-decoration-none" href="#!">Términos de uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+		<style>
+			.carta2{
+				visibility: hidden;
+			}
+		</style>
+		<script>
+
+			var turno = false	
+			var array_imagenes1 =["./brand/cartas/imagenes/google.jpg","./brand/cartas/imagenes/ibm.jpg", "./brand/cartas/imagenes/microsoft.jpg", "./brand/cartas/imagenes/nvidia.jpg", "./brand/cartas/imagenes/ryzen.jpg"]
+			var array_imagenes2 = ["./brand/cartas/imagenes/intel.jpg","./brand/cartas/imagenes/samsung.jpg", "./brand/cartas/imagenes/linux.jpg", "./brand/cartas/imagenes/firefox.jpg", "./brand/cartas/imagenes/utad.jpg"]
+			var array_orden1 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+			var array_orden2 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+			var puntuacion = 0
+			var first_source
+			var second_source
+			var first_id
+			var second_id
+			var juego_empezado = false
+			var una_vez = true
+			var array_concatenado_orden
+			var carta_seleccionada = -1
+			var check = false
+
+
+			function num_jugadores()
+			{
+				var i = 0
+				var img
+				if (juego_empezado == false)
+				{
+					if (document.getElementById("cartas").innerHTML == "10 cartas")
+					{
+						document.getElementById("cartas").innerHTML = "20 cartas"
+						for (i = 10; i < 20 ; i++ )
+						{
+							img = document.getElementById(i).style.visibility = "visible"
+						}
+					}
+					else
+					{
+						document.getElementById("cartas").innerHTML ="10 cartas"
+						for (i = 10; i < 20 ; i++ )
+						{
+							img = document.getElementById(i).style.visibility =  "hidden"
+						}
+					}
+				}
+
+			}
+
+			function juego()
+			{
+				alert("El juego va a comenzar")
+				juego_empezado = true
+				var i,j 
+				var k 
+				var contador
+				var boton = document.getElementById("cartas")
+				for (i = 0; i < 10 ; i++)
+				{
+					k=true
+
+					while (k)
+					{
+						contador =0
+						var random = Math.floor(Math.random() * 5)
+						for(j = 0; j < 10 ; j++)
+						{
+							if (array_orden1[j] == random)
+							{
+								contador = contador +1
+							}
+
+						}
+						
+						if (contador < 2) 
+						{
+							array_orden1[i] = random
+							k = false
+						}
+
+					}
+				}
+				
+				if (document.getElementById("cartas").innerHTML == "20 cartas")
+				{
+					for (i = 0; i < 10 ; i++)
+					{
+						k=true			
+
+						while (k)
+						{
+							contador =0
+							var random = (Math.floor(Math.random() * 5) + 5)
+							for(j = 0; j < 10 ; j++)
+							{
+								if (array_orden2[j] == random)
+								{
+									contador = contador +1
+								}
+
+							}
+							
+							if (contador < 2) 
+							{
+								array_orden2[i] = random 
+								k = false
+							}
+
+						}
+					}
+				}
+
+
+					
+
+				
+			}
+			function randomizarCartas()
+			{
+				array_concatenado_orden = array_orden1.concat(array_orden2)
+				array_concatenado_orden = array_concatenado_orden.sort(function() {return Math.random() - 0.5});
+				una_vez = false
+
+				
+			}
+			function change(image)
+			{
+				if(document.getElementById("cartas").innerHTML == "20 cartas")
+				{
+					if (una_vez)
+					{
+						randomizarCartas()
+					}
+					
+					var array_concatenado_img = array_imagenes1.concat(array_imagenes2)	
+					if(turno)
+					{
+						if ( carta_seleccionada != image.id)
+						{
+							second_source = array_concatenado_img[array_concatenado_orden[image.id]]
+							//document.getElementById(image.id).src = second_source
+							setTimeout(cambiarImagen,200,second_source, image.id);
+
+							second_id = image.id
+							turno = false
+							comprobar()
+						}
+					}
+					else if (turno == false)
+					{
+						first_source = array_concatenado_img[array_concatenado_orden[image.id]]
+						carta_seleccionada = image.id
+						//document.getElementById(image.id).src = first_source				
+						setTimeout(cambiarImagen,200,first_source, image.id);
+
+						first_id = image.id
+						turno = true
+					}
+				}
+				else
+				{
+					if(turno)
+					{
+						if(carta_seleccionada != image.id)
+						{
+							second_source = array_imagenes1[array_orden1[image.id]]
+							setTimeout(cambiarImagen,200,second_source, image.id);
+							second_id = image.id
+							turno = false
+							check = true
+							setTimeout(comprobar,500);
+						}
+
+					}
+					else if (turno == false)
+					{
+						first_source = array_imagenes1[array_orden1[image.id]]
+						carta_seleccionada = image.id
+						setTimeout(cambiarImagen,200,first_source,image.id);
+						first_id = image.id
+						turno = true
+					}
+				}
+				
+				
+			}
+
+			function cambiarImagen(source, id)
+			{
+
+				animar(id, source, "slow");
+				//document.getElementById(id).src = source;
+				console.log("BUUUUUUUUF" + document.getElementById(id).src);
+
+			}
+
+			function comprobar()
+			{
+				
+				if (first_source != second_source)
+				{
+
+					//document.getElementById(first_id).src = "./brand/cartas/imagenes/carta.jpg"
+					//document.getElementById(second_id).src = "./brand/cartas/imagenes/carta.jpg"
+					setTimeout(cambiarImagen,1200,"./brand/cartas/imagenes/carta.jpg",first_id);
+					setTimeout(cambiarImagen,1200,"./brand/cartas/imagenes/carta.jpg",second_id);
+
+
+					
+
+				}
+				else
+				{
+					puntuacion ++
+					document.getElementById("demo").innerHTML = "PUNTOS : " + puntuacion
+					check_victoria()
+
+				}
+			}
+
+			function check_victoria()
+			{
+				var boton = document.getElementById("cartas")
+				if (boton.innerHTML == "10 cartas")
+				{
+					if (puntuacion == 5)
+					{
+						document.getElementById("demo_demo").innerHTML = "Enhorabuena, has ganado"
+						alert("FELICITACIONES")
+					}
+				}
+				else 
+				{
+					if(puntuacion == 10)
+					{
+						document.getElementById("demo_demo").innerHTML = "Enhorabuena, has ganado"
+						alert("FELICITACIONES!")
+
+					}
+				}
+				
+			}
+
+			function animar(source, ending, velocidad)
+			{
+				// $("#"+source).fadeToggle();
+				var espera = 0;
+				
+				if(velocidad == "slow")
+					espera = 500;
+				else
+					espera = 250;
+				
+				$("#"+source).fadeTo(velocidad, 0);
+				setTimeout
+				(
+					()=>
+					{
+						$("#"+source).attr('src',ending);
+						$("#"+source).fadeTo(velocidad, 1);
+					},espera
+				)
+				// $("#"+source).fadeToggle();
+			}
+
+
+
+		</script>
+	</body>
+</html> 
