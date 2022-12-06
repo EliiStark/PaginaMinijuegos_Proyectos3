@@ -1,0 +1,302 @@
+﻿<html>
+<head>
+	<title>Blue Anxiety - Juego de las Ranas</title>
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="brand/favicon/juego_ranas/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="brand/favicon/juego_ranas/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="brand/favicon/juego_ranas/favicon-16x16.png">
+    <link rel="manifest" href="brand/favicon/juego_ranas/site.webmanifest">
+
+    <!-- Style & Script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+ 
+ 
+<body style="background-image: url(./brand/ranas/background.jpg);">
+    <center>
+        <h2 class="text-secondary">🐸Juego de las Ranas🐸</h2>
+        <div>
+            <h2 class="text-secondary" id="contador">Contador: 0</h2>
+        </div>
+        <table border="1" bordercolor="#000608" align="center">
+            <tr>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+            </tr>
+            <tr>
+                <td> <img id="0" src="./brand/ranas/L.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+                <td> <img id="1" src="./brand/ranas/L.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+                <td> <img id="2" src="./brand/ranas/L.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+                <td> <img id="3" src="./brand/ranas/B.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+                <td> <img id="4" src="./brand/ranas/R.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+                <td> <img id="5" src="./brand/ranas/R.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+                <td> <img id="6" src="./brand/ranas/R.png" onclick="mueve_rana(this)" width="100" height="107"> </td>
+            </tr>
+            <tr>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+                <td> <img src="./brand/ranas/E.png" width="100" height="107"> </td>
+            </tr>
+        </table>
+        <br>
+        <button class="btn btn-secondary text-uppercase" onclick="window.location.reload();">  Refrescar </button>
+        <button class="btn btn-secondary text-uppercase" id="resuelveHardcoded" onclick="resuelve_hardcoded();">  Resuelve </button>
+        <button class="btn btn-secondary text-uppercase" onclick="undo();">  Deshacer </button>
+        <button class="btn btn-secondary text-uppercase" onclick="randomize();">  Aleatoriza </button>
+        <button class="btn btn-secondary text-uppercase" onclick="resuelveRecursivo();">  Resuelve con IA </button>
+    
+        <h2 id="msg" style="color:#ffffff;"></h2>
+    </center>
+ 
+    <script type="text/javascript">
+
+        var movUsuario = [];
+        var contador = 0;
+
+
+        function checkWin() {
+            const correctos = document.getElementById(0).src.includes("R.png") +
+                document.getElementById(1).src.includes("R.png") +
+                document.getElementById(2).src.includes("R.png") +
+                document.getElementById(3).src.includes("B.png");
+
+            if (correctos == 4) {
+                // setTimeout(() => { alert("You won! Has ganado!") } , 1);
+                document.getElementById("msg").innerHTML = "You won! Has ganado!"
+
+                return (true);
+            } else {
+                return (false);
+            }
+
+        }
+
+        function randomize() {
+            for (let i = 0; i < 7; i++) {
+                salta_rana(document.getElementById(i),
+                    document.getElementById(Math.floor(Math.random() * 7)),
+                    param_undo = false,
+                    param_random = true
+                );
+
+            }
+            document.getElementById("contador").innerHTML = "0";
+            movUsuario = [];
+        }
+
+        function resuelve_hardcoded() {
+            let moves = [3, 2, 4, 5, 3, 1, 0, 2, 4, 6, 5, 3, 1, 2, 4, 3]
+
+            for (let i = 1; i < moves.length; i++) {
+                setTimeout(() => { salta_rana(document.getElementById(moves[i - 1]), document.getElementById(moves[i])) }, (i - 1) * 1000);
+            }
+        }
+
+
+        function salta_rana(o, d, param_undo = false, param_random = false) {
+            var src_copia = o.src;
+            o.src = d.src;
+            d.src = src_copia
+
+            document.getElementById("msg").innerHTML = "";
+
+            if (param_undo) {
+                contador--;
+                document.getElementById("contador").innerHTML = "Contador: " + contador;
+            } else if (!param_random) {
+                contador++;
+                movUsuario.push([o, d]);
+                document.getElementById("contador").innerHTML = "Contador: " + contador;
+            }
+
+            const btnrResuelveHardcoded = document.getElementById('resuelveHardcoded');
+            if (contador > 0) {
+                btnrResuelveHardcoded.disabled = true;
+            } else {
+                btnrResuelveHardcoded.disabled = false;
+            }
+            checkWin();
+
+
+        }
+
+        function checkBlockage() {
+            for (i = 0; i < 7; i++) {
+                console.log(i)
+                if (mueve_rana(document.getElementById(i), checkblock = true)) {
+                    undo();
+                    return (false);
+                }
+            }
+            return (true);
+        }
+
+
+        function undo() {
+            if (movUsuario.length > 0) {
+                var mov = movUsuario.pop();
+                salta_rana(mov[0], mov[1], param_undo = true, param_random = false);
+            }
+        }
+
+        function frog_swap(i, j) {
+            var copy_src = document.getElementById(i).src;
+            document.getElementById(i).src = document.getElementById(j).src;
+            document.getElementById(j).src = copy_src;
+        }
+
+        var time2wait = 1000;
+        function resuelveRecursivo() {
+            var posiciones = new Array(7);
+            var pos_blanco = 0;
+            for (var i = 0; i < 7; i++) {
+                if (document.getElementById(i).src.includes("L.png")) {
+                    posiciones[i] = "L";
+                } else {
+                    if (document.getElementById(i).src.includes("R.png")) {
+                        posiciones[i] = "R";
+                    } else {
+                        posiciones[i] = "B";
+                        pos_blanco = i;
+                    }
+                }
+            }
+            time2wait = 1000;
+            frogleap_recursive(posiciones, pos_blanco, 1);
+        }
+
+        function array_swap(posiciones, i, j) {
+            var copy_aux = posiciones[i];
+            posiciones[i] = posiciones[j];
+            posiciones[j] = copy_aux;
+            return (posiciones);
+        }
+
+        function array_checkWin(posiciones) {
+            var derecha = false;
+            var izquierda = false;
+            if (posiciones[0] == "R")
+                if (posiciones[1] == "R")
+                    if (posiciones[2] == "R")
+                        derecha = true;
+            if (posiciones[4] == "L")
+                if (posiciones[5] == "L")
+                    if (posiciones[6] == "L")
+                        izquierda = true;
+            if (derecha)
+                if (izquierda)
+                    return (true);
+            return (false);
+        }
+
+        function frogleap_recursive(posiciones, posicion_blanco, nivel_recursion) {
+            var movimientos = [-1, 1, -2, 2];
+            var movimiento = -2;
+            var posiciones_changed = posiciones;
+            var LorR;
+
+            if (nivel_recursion > 20) {
+                return (-1);
+            }
+
+
+            for (var i = 0; i < 4; i++) {
+                movimiento = movimientos[i];
+                if (movimiento < 0)
+                    LorR = "L"
+                else
+                    LorR = "R"
+                if (posicion_blanco + movimiento >= 0) {
+                    if (posiciones[posicion_blanco + movimiento] == LorR) {
+
+                        //HACIENDO EL CAMBIO!
+
+                        posiciones_changed = array_swap(posiciones_changed, posicion_blanco + movimiento, posicion_blanco);
+
+                        if (array_checkWin(posiciones_changed)) {
+                            console.log("1.5-time2wait*nivel_recursion=", time2wait * nivel_recursion);
+                            setTimeout(() => { frog_swap(posicion_blanco, posicion_blanco + movimiento); }, time2wait * nivel_recursion);
+                            setTimeout(() => { checkWin(); }, time2wait * nivel_recursion + 1000);
+                            return (1);
+                        }
+                        respuesta = frogleap_recursive(posiciones_changed, posicion_blanco + movimiento, nivel_recursion + 1);
+
+
+                        if (respuesta < 0) {
+                            //DESHACIENDO EL CAMBIO - ESTO ES NECESARIO PORQUE JavaScript
+                            //NO CREAR UNA COPIA DE LOS ARRAYS DENTRO DE LAS RECURSIONES!
+                            posiciones_changed = array_swap(posiciones_changed, posicion_blanco + movimiento, posicion_blanco);
+                        } else {
+                            setTimeout(() => { frog_swap(posicion_blanco, posicion_blanco + movimiento); }, time2wait * nivel_recursion);
+                            return (1);
+                        }
+                    }
+                }
+            }
+            //posiciones_changed = null;
+            return (-1);
+
+        }
+
+        function mueve_rana(el, checkblock = false) {
+            //alert(el.id)
+            var id_el = parseInt(el.id, 10), el_vecino, haMovido = false;
+
+            if (el.src.includes("L.png") && id_el < (7 - 2)) { // Tipo L y hay algo a la derecho
+                el_vecino = document.getElementById(id_el + 2);
+                if (el_vecino.src.includes("B.png")) {
+                    salta_rana(el, el_vecino, param_undo = false, param_random = false);
+                    haMovido = true;
+                }
+            }
+
+            if (el.src.includes("L.png") && id_el < (7 - 1)) { // Tipo L y hay algo a la derecho
+                el_vecino = document.getElementById(id_el + 1);
+                if (el_vecino.src.includes("B.png")) {
+                    salta_rana(el, el_vecino, param_undo = false, param_random = false);
+                    haMovido = true;
+                }
+            }
+
+            if (el.src.includes("R.png") && id_el > 1) { // Tipo L y hay algo a la derecho
+                el_vecino = document.getElementById(id_el - 2);
+                if (el_vecino.src.includes("B.png")) {
+                    salta_rana(el, el_vecino, param_undo = false, param_random = false);
+                    haMovido = true;
+                }
+            }
+
+            if (el.src.includes("R.png") && id_el > 0) { // Tipo L y hay algo a la derecho
+                el_vecino = document.getElementById(id_el - 1);
+                if (el_vecino.src.includes("B.png")) {
+                    salta_rana(el, el_vecino, param_undo = false, param_random = false);
+                    haMovido = true;
+                }
+            }
+
+            if (!checkblock) {
+                if (checkBlockage() && !checkWin()) {
+                    document.getElementById("msg").innerHTML = "Juego Bloqueado!"
+                }
+                checkBlockage();
+            }
+
+            return (haMovido);
+        }
+
+
+    </script>
+ 
+</body>	
+</html>
