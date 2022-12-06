@@ -1,0 +1,12 @@
+p {
+	display: inline;
+}
+button{
+	border-radius: 25px;
+}
+html,body{
+	height: 100%
+}
+.bg-dark:hover{
+	border-radius: 25px;
+}
