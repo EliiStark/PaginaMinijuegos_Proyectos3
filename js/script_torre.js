@@ -1,3 +1,5 @@
+turn = 1;
+
 var createBoard = function()
 {
 	rank = ["A","B","C","D","E","F","G","H"];
@@ -52,7 +54,7 @@ var legalMove = function(piece)
 		{
 			for (var j = 0; j < 8; j++)
 			{
-				if((c_rank == rank[i]) || (c_file == file[j]))
+				if((c_rank == rank[i] && c_file <= file[j]) || (c_rank <= rank[i] && c_file == file[j]))
 				{	
 					var ID = rank[i]+file[j];
 					console.log("ID : "+ID);
@@ -67,30 +69,7 @@ var legalMove = function(piece)
 
 	}
 
-
-	if (piece == "king")
-	{
-		for (var i = l_rank-1; i < l_rank+2; i++)
-		{	
-			for (var j = l_file-1; j < l_file+2; j++)
-			{
-			var ID = rank[i]+file[j];
-			$('*[data-gridpos="'+ID+'"]').addClass('legal');
-			currentTile.removeClass('legal');
-			}
-		}
-	}
-
-
-	if (piece == "pawn")
-	{
-		var ID = rank[l_rank+1]+file[l_file];
-		$('*[data-gridpos="'+ID+'"]').addClass('legal');
-		currentTile.removeClass('legal');
-	}
-
 }
-
 
 jQuery(document).ready(function($) {
 	createBoard();
@@ -98,19 +77,33 @@ jQuery(document).ready(function($) {
 	tiles = $(".tile");
 
 
-
+	$('*[data-gridpos="A1"]').addClass('legal');
+	
 	$(".tile").on('click',function(){
-		currentTile = $(this);
-		var midY = $(this).position().top += ( $(this).width() / 2 );
-		var midX = $(this).position().left += ( $(this).width() / 2 );
-		var player = $("#player");
-		
+		console.log("clicked");
+		if ($(this).hasClass("legal")){
+			currentTile = $(this);
+			var midY = $(this).position().top += ( $(this).width() / 2 );
+			var midX = $(this).position().left += ( $(this).width() / 2 );
+			var player = $("#player");
+			
 
 
-		tiles.removeClass('legal');		
-		console.log("X : "+midX + " || Y : "+midY);
-		player.css({"top":midY - (0.5 * player.width()), "left":midX-(0.5*player.width())});
-		console.log("Last Clicked Tile : "+currentTile.data("gridpos"));
+			tiles.removeClass('legal');		
+			console.log("X : "+midX + " || Y : "+midY);
+			player.css({"top":midY - (0.5 * player.width()), "left":midX-(0.5*player.width())});
+			console.log("Last Clicked Tile : "+currentTile.data("gridpos"));
+			legalMove('rook');
+			var gridpos = currentTile.attr('data-gridpos');
+			console.log(gridpos);
+			turn = Math.abs(turn - 1);
+			if (gridpos == "H8"){
+				startConfetti();
+				$("#Jugador").text("GANADOR Jugador " + (turn+1));
+			}else{
+				$("#Jugador").text("Turno de Jugador " + (turn+1));
+			}
+		}
 
 	})
 
@@ -122,13 +115,13 @@ jQuery(document).ready(function($) {
 		$(this).removeClass('hover');
 	});
 
-	var displaylegal = $("#controlbox > ul > li");
+	// var displaylegal = $("#controlbox > ul > li");
 	
 
-	displaylegal.on('click',function(){
-		console.log($(this).attr('id'))
-		legalMove($(this).attr('id'));
-	})
-
+	// displaylegal.on('click',function(){
+		// console.log($(this).attr('id'))
+		// legalMove($(this).attr('id'));
+	// })
+	
 	$('*[data-gridpos="A1"]').trigger('click');
 });
