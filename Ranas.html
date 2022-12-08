@@ -11,6 +11,8 @@
     <!-- Style & Script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="css/styles.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="js/script_Info.js"></script>
 </head>
  
  
@@ -57,13 +59,22 @@
         <button class="btn btn-secondary text-uppercase" onclick="resuelveRecursivo();">  Resuelve con IA </button>
     
         <h2 id="msg" style="color:#ffffff;"></h2>
+
+        <button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
+        <button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
+        <div class="row d-flex justify-content-center">
+            <div id="info" class="col-3 border boder-info rounded bg-light d-none">
+                <p class ="text-secondary"> El juego consiste en pasar todas las ranas de un tipo de un lado al otro. Las ranas saltan sobre otras ranas hacia el lado 
+                    al que miran y sólo pueden aterrizar en la roca.
+                </p>
+            </div>
+        </div>
     </center>
  
     <script type="text/javascript">
 
         var movUsuario = [];
         var contador = 0;
-
 
         function checkWin() {
             const correctos = document.getElementById(0).src.includes("R.png") +

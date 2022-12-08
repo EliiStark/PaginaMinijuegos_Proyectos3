@@ -8,6 +8,8 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/styles_manos.css">
 	<link rel="stylesheet" href="css/styles.css">
+
+	<script type="text/javascript" src="js/script_Info.js"></script>
 	<title>Blue Anxiety - Juego de las manos</title>
 </head>
 <body>
@@ -47,6 +49,19 @@
 				<div class="row">
 					<div id="pista_texto" class="col-12 text-center"> <p> </div>
 				</div>
+				<br>
+				<button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
+				<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
+				<div class="row d-flex justify-content-center">
+					<div id="info" class="col-3 border boder-info rounded bg-light d-none">
+						<p class ="text-secondary"> El objetivo es adivinar en qué mano está la llave.</p>
+						<p class ="text-secondary"> En el Menú podemos elegir los nombres de los participantes (el jugador y la IA). El botón 'Reiniciar Contador' 
+							reiniciará la partida. 'Pista' nos mostrá una pista de dónde está la llave. 'IA' ejecutará el juego de forma automática, convirtiendo 
+							al jugador en otra IA.
+						</p>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

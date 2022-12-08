@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="css/styles_torre.css">
 	<script type="text/javascript" src = "js/script_torre.js"> </script>
 	<script type="text/javascript" src="js/confetti.js"></script>
+
+	<script type="text/javascript" src="js/script_Info.js"></script>
 </head>
  
  
@@ -32,8 +34,15 @@
 					<div id="player" class ="smoothmove"><span class="icon">♖</span></div>
 				</div>	
 				<button class="btn btn-secondary text-uppercase" onclick="window.location.reload();">  Nueva Partida </button>
-				<button class="btn btn-secondary text-uppercase">  Cómo jugar </button>
-				
+				<button id="showInfo" class="btn btn-secondary text-uppercase" onclick="showInfo()">  Cómo jugar </button>
+				<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
+
+				<div class="row d-flex justify-content-center">
+					<div id="info" class="col-12 border boder-info rounded bg-light d-none">
+						<p class ="text-secondary">El juego de la torre consiste en...
+						</p>
+					</div>
+				</div>
 			</div>
 			<div class="col-3"></div>
 		</div>

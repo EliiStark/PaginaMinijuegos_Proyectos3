@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script type="text/javascript" src="js/script_Info.js"></script>
     <title>Blue Anxiety - Brick Breaker</title>
 </head>
 <body>
@@ -13,7 +16,18 @@
         <div class="contenedor">
             
         </div>
-
+        <center>
+            <button class="btn btn-secondary" onclick="window.location.reload();">  Reiniciar </button>
+            <button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
+            <button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
+            <div class="row d-flex justify-content-center">
+                <div id="info" class="col-3 border boder-info rounded bg-light d-none">
+                    <p class ="text-secondary">El juego consiste en romper todos los ladrillos con la bola.</p>
+                    <p class ="text-secondary"> Utiliza las teclas de dirección izquierda y derecha para mover la plataforma e impulsar la bola cuando caiga.
+                    </p>
+                </div>
+            </div>
+        </center>
     </div>
     <script src="js/codigo.js"></script>
 </body>
