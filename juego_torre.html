@@ -21,26 +21,31 @@
 </head>
  
  
-<body> <!--style="background-image: url(./brand/ranas/background.jpg);"-->
+<body style="background-image: url(./brand/torre/background.jpg); background-size: 100% 100%;">
 	<div class="container-fluid h-100">
 		<div class="row">
 			<div class="col-3"></div>
 			<div class="col-6">
-				<h2 class="text-secondary text-center">♖Juego de la Torre♖</h2>
+				<h2 class="text-light text-center">♖Juego de la Torre♖</h2>
 				<div>
-					<h2 class="text-secondary text-center" id="Jugador">Turno de Jugador 1</h2>
+					<h2 class="text-light text-center" id="Jugador">Turno de Jugador 1</h2>
 				</div>
 				<div id="chessboard" >
 					<div id="player" class ="smoothmove"><span class="icon">♖</span></div>
 				</div>	
+				<br>
 				<button class="btn btn-secondary text-uppercase" onclick="window.location.reload();">  Nueva Partida </button>
+				<br>
+				<br>
 				<button id="showInfo" class="btn btn-secondary text-uppercase" onclick="showInfo()">  Cómo jugar </button>
 				<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
 
-				<div class="row d-flex justify-content-center">
-					<div id="info" class="col-12 border boder-info rounded bg-light d-none">
-						<p class ="text-secondary">El juego de la torre consiste en llegar a la esquina contraria del tablero usando los movimientos permitidos.</p>
-						<p class ="text-secondary">Gana el jugador que lo consiga antes.</p>
+				<div class="row">
+					<div id="info" class="col-6 border boder-info rounded bg-light d-none">
+						<p class ="text-secondary">El juego de la torre consiste en llegar a la esquina superior derecha del tablero. 
+						</p>
+						<p class ="text-secondary">Solo se puede usar el movimiento de la torre, y esta solo puede avanzar hacia la meta, no retroceder. 
+						Los jugadores moverán por turnos la torre. Gana el jugador que mueva la torre a la casilla. </p>
 					</div>
 				</div>
 			</div>

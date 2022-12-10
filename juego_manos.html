@@ -12,56 +12,53 @@
 	<script type="text/javascript" src="js/script_Info.js"></script>
 	<title>Blue Anxiety - Juego de las manos</title>
 </head>
-<body>
+<body style="background-image: url(./brand/manos/background.jpg);">
 	
 	<div class="container-fluid h-100">
 		<div class="row h-100">
-			<div class="col-5 col-sm-4 col-md-3 col-lg-2 bg-secondary text-light">
-				<h1> MENU </h1>
-				<form>
-					<label for="nombreJugador">Nombre Jugador1</label>
-					<input type="text" id="nombreJugador" value ="Jugador"></input>
-					<label for="nombreMaquina">Nombre Jugador2</label>
-					<input type="text" id="nombreMaquina" value="Maquina"></input>
-				</form>
-				<br>
-				<button id="botonFormulario">Actualizar</button>
+			<div class="col-2">
+
 			</div>
-			<div class="col bg-body">
+			<div class="col">
 				<div class="row">
 					<div class="col-12"> <h2 class="text-center text-secondary">Juego de Encontrar la Llave</h2> </div>
 				</div>
 				<div class="row text-center">
-					<div class="col-5 col-sm-5 col-md-4 col-lg-3"> <img id="0" class="img-fluid" src="images/manos/fist.png"> </div>
+					<div class="col-5 col-sm-5 col-md-4 col-lg-3"> <img id="0" class="img-fluid" src="brand/manos/fist.png"> </div>
 					<div class="col-2 col-sm-2 col-md-4 col-lg-6"></div>
-					<div class="col-5 col-sm-5 col-md-4 col-lg-3"> <img id="1" class="img-fluid" src="images/manos/fist.png"> </div>
+					<div class="col-5 col-sm-5 col-md-4 col-lg-3"> <img id="1" class="img-fluid" src="brand/manos/fist.png"> </div>
 				</div>
 				<div class="row text-center">
 					<div class="col-5 col-sm-5 col-md-4 col-lg-3 bg-dark text-light"> <p id="jugador"> Puntos de Jugador: 0 </p></div>
 					<div class="col-2 col-sm-2 col-md-4 col-lg-6"></div>
 					<div class="col-5 col-sm-5 col-md-4 col-lg-3 bg-dark text-light"> <p id="maquina"> Puntos de Maquina: 0 </p></div>
 				</div>
-				<div class="row mt-3 bg-dark">
-					<div class="col-6 col-sm-6 col-md-4 text-end"> <button id="reiniciar" class="btn-primary align-bottom"> <span class="fa fa-refresh" ></span>  Reiniciar Contadores </button></div>
-					<div class="col-3 col-sm-3 col-md-4 text-center"> <button id="pista" class="btn-info align-bottom"> <span class="fa fa-search" ></span>  Pista </button></div>
-					<div class="col-3 col-sm-3 col-md-4 text-start"> <button id="ia" class="btn-success align-bottom"> <span class="fa fa-user" ></span>  IA </button></div>
+				<div class="row mt-3">
+					<div class="col-3  text-center"> 
+						<button id="showInfo" onclick="showInfo()" class="btn-info"> Mostrar Info </button>
+						<button id="hideInfo" onclick="hideInfo()" class="btn-info d-none"> Esconder Info </button>
+					</div>
+					<div class="col-3  text-center"> <button id="reiniciar" class="btn-primary align-bottom"> <span class="fa fa-refresh" ></span>  Reiniciar Contadores </button></div>
+					<div class="col-3  text-center"> <button id="pista" class="btn-info align-bottom"> <span class="fa fa-search" ></span>  Pista </button></div>
+					<div class="col-3  text-center"> <button id="ia" class="btn-success align-bottom"> <span class="fa fa-user" ></span>  IA </button></div>
 				</div>
 				<div class="row">
 					<div id="pista_texto" class="col-12 text-center"> <p> </div>
 				</div>
 				<br>
-				<button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
-				<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
 				<div class="row d-flex justify-content-center">
 					<div id="info" class="col-3 border boder-info rounded bg-light d-none">
 						<p class ="text-secondary"> El objetivo es adivinar en qué mano está la llave.</p>
-						<p class ="text-secondary"> En el Menú podemos elegir los nombres de los participantes (el jugador y la IA). El botón 'Reiniciar Contador' 
+						<p class ="text-secondary"> El botón 'Reiniciar Contador' 
 							reiniciará la partida. 'Pista' nos mostrá una pista de dónde está la llave. 'IA' ejecutará el juego de forma automática, convirtiendo 
 							al jugador en otra IA.
 						</p>
 					</div>
 				</div>
 				
+			</div>
+			<div class="col-2">
+
 			</div>
 		</div>
 	</div>

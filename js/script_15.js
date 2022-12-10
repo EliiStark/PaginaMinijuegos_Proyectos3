@@ -4,33 +4,36 @@ var numJ2 = []
 var nombreJugador = "Jugador";
 var nombreMaquina = "Maquina";
 
-var turno = 1;
+var turn = 1;
 
 var iaInterval;
 
 $(document).ready( ()=> {
 	$("h2").click(function(){
 		if (!numJ1.includes(parseInt($(this).attr('id'))) && !numJ2.includes(parseInt($(this).attr('id')))){
-			if (turno == 1){
+			if (turn == 1){
 				numJ1.push(parseInt($(this).attr('id')));
-				turno = 2;
+				turn = 2;
 				$(this).css('color', 'blue');
 				$('#numJ1').text(numJ1.toString());
 				
 			}else{
 				numJ2.push(parseInt($(this).attr('id')));
-				turno = 1;
+				turn = 1;
 				$(this).css('color', 'red');
 				$('#numJ2').text(numJ2.toString());
 			}
+			$("#textPlayer").text("Turno de Jugador " + (turn));
 		}
 		
 		if (comprueba(numJ1)){
-			alert("gana 1");
+			$("#textPlayer").text("GANADOR Jugador 1");
+			startConfetti();
 		}
 		
 		if (comprueba(numJ2)){
-			alert("gana2");
+			$("#textPlayer").text("GANADOR Jugador 2");
+			startConfetti();
 		}		
 		
 	})

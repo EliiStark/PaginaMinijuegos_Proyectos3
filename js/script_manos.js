@@ -1,6 +1,6 @@
-var fist = "images/manos/fist.png";
-var hand = "images/manos/hand.png";
-var key =  "images/manos/key.png";
+var fist = "brand/manos/fist.png";
+var hand = "brand/manos/hand.png";
+var key =  "brand/manos/key.png";
 
 var jugador = 0;
 var maquina = 0;

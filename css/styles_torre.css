@@ -7,10 +7,8 @@
 
 #chessboard
 {
-float: left;
 padding:10px;
-background-color: #5A79B1;
-border:5px solid black;
+margin: 10px;
 
 }
 
