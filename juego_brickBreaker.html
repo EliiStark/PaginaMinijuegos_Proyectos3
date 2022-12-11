@@ -24,13 +24,14 @@
         </div>
         <center>
             <button class="btn btn-secondary" onclick="window.location.reload();">  Reiniciar </button>
-            <button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
-            <button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
-            <div class="row d-flex justify-content-center">
-                <div id="info" class="col-3 border boder-info rounded bg-light d-none">
-                    <p class ="text-secondary">El juego consiste en romper todos los ladrillos con la bola.</p>
-                    <p class ="text-secondary"> Utiliza las teclas de dirección izquierda y derecha para mover la plataforma e impulsar la bola cuando caiga.
-                    </p>
+            <a href="#popup" class="btn btn-info"> Instrucciones </a>
+            <div id="popup" class="overlay">
+                <div id="popupBody">
+                    <h2 style="color: black;">Instrucciones</h2>
+                    <a id="cerrar" href="#">&times;</a>
+                    <div class="popupContent">
+                        <p>El juego consiste en romper todos los ladrillos con la bola. Utiliza las teclas de dirección izquierda y derecha para mover la plataforma e impulsar la bola cuando caiga.</p>
+                    </div>
                 </div>
             </div>
         </center>

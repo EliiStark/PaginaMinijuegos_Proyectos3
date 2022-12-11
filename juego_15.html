@@ -15,6 +15,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/styles_manos.css">
+	<link rel="stylesheet" href="css/styles.css">
 
 	<script type="text/javascript" src="js/script_Info.js"></script>
 	<title>Blue Anxiety - Juego del 15</title>
@@ -64,15 +65,18 @@
 					</div>
 				</div>
 
-				<button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
-        		<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
-				<div class="row d-flex justify-content-center">
-					<div id="info" class="col-3 border boder-info rounded bg-dark d-none">
-						<p style="color: white;"> El juego consiste en conseguir tres números que sumen 15. Los jugadores elegirán
-						 por turnos un número cada uno, hasta que alguno consiga formar un trío que sume 15 o se acaben los números. 
-						</p>
+				<center>
+					<a href="#popup" class="btn btn-info"> Instrucciones </a>
+					<div id="popup" class="overlay">
+						<div id="popupBody">
+							<h2 style="color: black;">Instrucciones</h2>
+							<a id="cerrar" href="#">&times;</a>
+							<div class="popupContent">
+								<p style="color: black;">El juego consiste en conseguir tres números que sumen 15. Los jugadores elegirán por turnos un número cada uno, hasta que alguno consiga formar un trío que sume 15 o se acaben los números.</p>
+							</div>
+						</div>
 					</div>
-				</div>
+				</center>
 			</div>
 			<div class="col-2">
 

@@ -22,15 +22,15 @@
 			
 			<div class="row">
 
-				<div class="col-4">
-					<button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
-					<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
-					<div class="row d-flex justify-content-center">
-						<div id="info" class="col-3 border boder-info rounded bg-light d-none">
-							<p class ="text-secondary">El juego de la memoria clásico. Encuentra todas las parejas de cartas.</p>
-							<p class ="text-secondary">Primero seleccione el modo de juego: 10 cartas o 20 cartas. Después pulse el botón 'Empieza' 
-								para comenzar la partida.
-							</p>
+				<div class="col-3">
+					<a href="#popup" class="btn btn-info"> Instrucciones </a>
+					<div id="popup" class="overlay">
+						<div id="popupBody">
+							<h2>Instrucciones</h2>
+							<a id="cerrar" href="#">&times;</a>
+							<div class="popupContent">
+								<p>El juego de la memoria clásico. Encuentra todas las parejas de cartas. Primero seleccione el modo de juego: 10 cartas o 20 cartas. Después pulse el botón 'Empieza' para comenzar la partida.</p>
+							</div>
 						</div>
 					</div>
 				</div>

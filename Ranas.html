@@ -60,13 +60,23 @@
     
         <h2 id="msg" style="color:#ffffff;"></h2>
 
-        <button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
+        <!--<button id="showInfo" onclick="showInfo()" class="btn btn-info"> Mostrar Info </button>
         <button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
         <div class="row d-flex justify-content-center">
             <div id="info" class="col-3 border boder-info rounded bg-light d-none">
                 <p class ="text-secondary"> El juego consiste en pasar todas las ranas de un tipo de un lado al otro. Las ranas saltan sobre otras ranas hacia el lado 
                     al que miran y sólo pueden aterrizar en la roca.
                 </p>
+            </div>
+        </div>-->
+        <a href="#popup" class="btn btn-info"> Instrucciones </a>
+        <div id="popup" class="overlay">
+            <div id="popupBody">
+                <h2>Instrucciones</h2>
+                <a id="cerrar" href="#">&times;</a>
+                <div class="popupContent">
+                    <p>El juego consiste en pasar todas las ranas de un tipo de un lado al otro. Las ranas saltan sobre otras ranas hacia el lado al que miran y sólo pueden aterrizar en la roca.</p>
+                </div>
             </div>
         </div>
     </center>

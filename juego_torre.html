@@ -37,15 +37,14 @@
 				<button class="btn btn-secondary text-uppercase" onclick="window.location.reload();">  Nueva Partida </button>
 				<br>
 				<br>
-				<button id="showInfo" class="btn btn-secondary text-uppercase" onclick="showInfo()">  Cómo jugar </button>
-				<button id="hideInfo" onclick="hideInfo()" class="btn btn-info d-none"> Esconder Info </button>
-
-				<div class="row">
-					<div id="info" class="col-6 border boder-info rounded bg-light d-none">
-						<p class ="text-secondary">El juego de la torre consiste en llegar a la esquina superior derecha del tablero. 
-						</p>
-						<p class ="text-secondary">Solo se puede usar el movimiento de la torre, y esta solo puede avanzar hacia la meta, no retroceder. 
-						Los jugadores moverán por turnos la torre. Gana el jugador que mueva la torre a la casilla. </p>
+				<a href="#popup" class="btn btn-info"> Instrucciones </a>
+				<div id="popup" class="overlay">
+					<div id="popupBody">
+						<h2>Instrucciones</h2>
+						<a id="cerrar" href="#">&times;</a>
+						<div class="popupContent">
+							<p>El juego de la torre consiste en llegar a la esquina superior derecha del tablero. Solo se puede usar el movimiento de la torre, y esta solo puede avanzar hacia la meta, no retroceder. Los jugadores moverán por turnos la torre. Gana el jugador que mueva la torre a la casilla.</p>
+						</div>
 					</div>
 				</div>
 			</div>
